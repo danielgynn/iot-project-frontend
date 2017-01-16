@@ -1,0 +1,20 @@
+{
+  "name": "iot-frontend",
+  "description": "",
+  "main": "",
+  "authors": [
+    "danielgynn <danielgynn@hotmail.co.uk>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/danielgynn/iot-project-frontend",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bulma": "^0.2.3"
+  }
+}

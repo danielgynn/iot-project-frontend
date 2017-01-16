@@ -5,12 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-hbs');
+var mqtt = require('mqtt');
 
 // Include routes
 var routes = require('./routes/index');
 var visuals = require('./routes/visuals');
 
 var app = express();
+
+var client  = mqtt.connect('mqtt://test.mosquitto.org');
 
 // Handlebars engine setup
 app.engine('hbs', hbs.express4({
