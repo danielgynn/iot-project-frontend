@@ -1,8 +1,8 @@
 var express = require('express');
-var router = express.Router();
 var mqtt = require('mqtt');
+var router = express.Router();
 
-var client  = mqtt.connect('127.0.0.1:15672');
+var client = mqtt.connect('127.0.0.1:15672'); // set client
 
 client.on('connect', function () {
   client.subscribe('presence')

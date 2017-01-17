@@ -3,9 +3,9 @@ var router = express.Router();
 
 // GET visuals data
 router.get('/', function(req, res, next) {
-  res.render('visuals', {
-    title: 'Data Visualisations',
-    heading: 'D3 graphs & charts for visuals',
+  res.render('bar', {
+    title: 'Bar Data Visualisations',
+    heading: 'Bar Chart Visualisations',
     layout: './partials/layout'
   });
 });

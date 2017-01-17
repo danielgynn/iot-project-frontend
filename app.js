@@ -9,7 +9,8 @@ var mqtt = require('mqtt');
 
 // Include routes
 var routes = require('./routes/index');
-var visuals = require('./routes/visuals');
+var bar = require('./routes/bar');
+var line = require('./routes/line');
 
 var app = express();
 
@@ -30,7 +31,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/visuals', visuals);
+app.use('/bar', bar);
+app.use('/line', line);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
