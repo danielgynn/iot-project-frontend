@@ -18,10 +18,29 @@
   <div class="nav-right nav-menu">
     {{#if user}}
       <a class="nav-item" href="/visuals">Visualisations</a>
-      <a class="nav-item" href="/logout">Logout</a>
+      <span class="nav-item">
+      <a class="button" href="/logout">
+        <span class="icon">
+          <i class="fa fa-sign-out"></i>
+        </span>
+        <span>Logout</span>
+      </a>
+    </span>
     {{else}}
-      <a class="nav-item" href="/login">Login</a>
-      <a class="nav-item" href="/signup">Signup</a>
+    <span class="nav-item">
+      <a class="button" href="/login">
+        <span class="icon">
+          <i class="fa fa-sign-in"></i>
+        </span>
+        <span>Login</span>
+      </a>
+      <a class="button is-primary" href="/signup">
+        <span class="icon">
+          <i class="fa fa-user-plus"></i>
+        </span>
+        <span>Signup</span>
+      </a>
+    </span>
     {{/if}}
   </div>
 </nav>
