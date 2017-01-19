@@ -31,21 +31,11 @@ router.get('/signup', function(req, res) {
 });
 
 // GET visuals data
-router.get('/line', isLoggedIn, function(req, res) {
-  res.render('line', {
-    title: 'Line Chart',
+router.get('/visuals', isLoggedIn, function(req, res) {
+  res.render('visuals', {
+    title: 'IoT Visualisations',
     heading: 'Line Chart Visualisations',
     subheading: 'Moisture level readings over time.',
-    layout: './partials/layout',
-    user: req.user
-  });
-});
-
-// GET visuals data
-router.get('/bar', isLoggedIn, function(req, res, next) {
-  res.render('bar', {
-    title: 'Bar Data Visualisations',
-    heading: 'Bar Chart Visualisations',
     layout: './partials/layout',
     user: req.user
   });
