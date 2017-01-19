@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/login', function(req, res, next) {
   res.render('login', {
-    // message: req.flash('loginMessage')
+    message: req.flash('loginMessage'),
     heading: 'Login',
     layout: './partials/layout'
   });
@@ -24,7 +24,7 @@ router.get('/login', function(req, res, next) {
 
 router.get('/signup', function(req, res) {
   res.render('signup', {
-    // message: req.flash('loginMessage')
+    message: req.flash('loginMessage'),
     heading: 'Signup',
     layout: './partials/layout'
   });
@@ -62,7 +62,9 @@ router.post('/login', passport.authenticate('local-login', {
 module.exports = router;
 
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated())
-      return next();
+  if (req.isAuthenticated()) {
+    return next();
+  }
   res.redirect('/');
+  console.log('You must authenticate to access Visualisations.')
 }
