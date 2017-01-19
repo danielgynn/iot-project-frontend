@@ -1,7 +1,7 @@
 <nav class="nav">
   <div class="nav-left">
     <a class="nav-item" href="/">
-      Daniel Gynn
+      DJG44 IoT Project
     </a>
   </div>
 
@@ -16,7 +16,13 @@
   <!-- This "nav-menu" is hidden on mobile -->
   <!-- Add the modifier "is-active" to display it on mobile -->
   <div class="nav-right nav-menu">
-    <a class="nav-item" href="/bar">Bar Graph</a>
-    <a class="nav-item" href="/line">Line Graph</a>
+    {{#if user}}
+      <a class="nav-item" href="/bar">Bar Graph</a>
+      <a class="nav-item" href="/line">Line Graph</a>
+      <a class="nav-item" href="/logout">Logout</a>
+    {{else}}
+      <a class="nav-item" href="/login">Login</a>
+      <a class="nav-item" href="/signup">Signup</a>
+    {{/if}}
   </div>
 </nav>

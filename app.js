@@ -6,10 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-hbs');
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
+var flash = require('connect-flash');
+var session = require('express-session');
+
 // Include routes
 var routes = require('./routes/index');
-var bar = require('./routes/bar');
-var line = require('./routes/line');
+var users = require('./routes/users');
+
+// Set config for Mongodb users
+var configDB = require('./config/database.js');
+mongoose.connect(configDB.url);
+require('./config/passport')(passport);
 
 var app = express();
 
@@ -25,10 +35,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'));
+
+app.use(session({ secret: 'shhsecret' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+// Define routes
 app.use('/', routes);
-app.use('/bar', bar);
-app.use('/line', line);
+app.use('/users', users);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
