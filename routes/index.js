@@ -14,9 +14,13 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
 router.get('/login', function(req, res, next) {
   res.render('login', {
-    message: req.flash('loginMessage'),
     heading: 'Login',
     layout: './partials/layout'
   });
@@ -24,7 +28,6 @@ router.get('/login', function(req, res, next) {
 
 router.get('/signup', function(req, res) {
   res.render('signup', {
-    message: req.flash('loginMessage'),
     heading: 'Signup',
     layout: './partials/layout'
   });
@@ -49,14 +52,12 @@ router.get('/logout', function(req, res) {
 
 router.post('/signup', passport.authenticate('local-signup', {
   successRedirect: '/',
-  failureRedirect: '/signup',
-  failureFlash: true,
+  failureRedirect: '/signup'
 }));
 
 router.post('/login', passport.authenticate('local-login', {
   successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true,
+  failureRedirect: '/login'
 }));
 
 module.exports = router;

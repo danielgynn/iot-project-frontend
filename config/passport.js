@@ -13,6 +13,7 @@ module.exports = function(passport) {
     });
   });
 
+  // Allow local authentication.
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -26,8 +27,9 @@ module.exports = function(passport) {
         if (err)
             return done(err);
         if (user) {
-            return done(null, false, req.flash('signupMessage', 'That email is already in use.'));
+            return done(null, false);
         } else {
+          // Create new user.
           var newUser = new User();
           newUser.local.email = email;
           newUser.local.password = newUser.generateHash(password);
@@ -41,6 +43,7 @@ module.exports = function(passport) {
     });
   }));
 
+  // Allow exisiting user to authenticate.
   passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -53,9 +56,9 @@ module.exports = function(passport) {
       if (err)
         return done(err);
       if (!user)
-        return done(null, false, req.flash('loginMessage', 'No user found.'));
+        return done(null, false);
       if (!user.validPassword(password))
-        return done(null, false, req.flash('loginMessage', 'Wrong password.'));
+        return done(null, false);
       return done(null, user);
     });
   }));
