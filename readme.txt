@@ -46,6 +46,7 @@ in a graph visualisation.
 7. Video Link
 
 https://www.youtube.com/watch?v=075wHwFt7KM&feature=youtu.be
+Runtime: 6:12
 
 Optional Marking Criteria
 --------------------------------------------------------------------------------
