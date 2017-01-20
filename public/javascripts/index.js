@@ -1,7 +1,9 @@
+// Set MQTT client variables.
 var host = 'ws://127.0.0.1:15675/ws'; // set MQTT Websockes host
 var client = mqtt.connect(host); // Connect to client
 var visualsRoute = 'http://localhost:3000/visuals';
 
+// Check if current route is visualisations.
 if (window.location.href === visualsRoute) {
   // Request permisions to send Chrome notifications
   Notification.requestPermission().then(function(result) {
@@ -15,16 +17,18 @@ if (window.location.href === visualsRoute) {
     client.subscribe('unikent/users/djg44/mysensor/soilmoisture');
   });
 
+  // Set default sample number.
   var sampleNumber = 1;
 
   // Send messages
   client.on('message', function(topic, message) {
     console.log(message.toString());
 
+    // Parse sensor reading as integer.
     var value = parseInt(message.toString());
     var sample = "Sample " + sampleNumber++;
 
-    // Run update graph function
+    // Run update graph function.
     updateFn = (updateGraph || function(){});
     updateFn(sample, value);
 

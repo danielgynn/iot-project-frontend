@@ -1,23 +1,24 @@
+// Include all required libraries.
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-hbs');
-
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var session = require('express-session');
 
-// Include routes
+// Include routes.
 var routes = require('./routes/index');
 
-// Set config for Mongodb users
+// Set config for Mongodb users.
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
 require('./config/passport')(passport);
 
+// Assign express app.
 var app = express();
 
 // Handlebars engine setup
@@ -27,12 +28,14 @@ app.engine('hbs', hbs.express4({
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
+// Express configurations.
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
+// Initialise a Passport session.
 app.use(session({ secret: 'shhsecret' }));
 app.use(passport.initialize());
 app.use(passport.session());

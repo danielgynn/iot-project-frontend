@@ -35,17 +35,17 @@ if it has just been watered.
 
 5. Visualisation
 
-Data is visualised using a line graph that displays the changes to the plant
-moisture levels over time.
+Data is visualised using a line graph (Chart.js) that displays the changes to
+the plant moisture levels over time.
 
 6. Processing
 
 The data is processed to a value that is readable and can be presented logically
 in a graph visualisation.
 
-7. Video
+7. Video Link
 
-https://
+https://www.youtube.com/watch?v=075wHwFt7KM&feature=youtu.be
 
 Optional Marking Criteria
 --------------------------------------------------------------------------------
@@ -81,6 +81,14 @@ iot-frontend/ - main project directory for frontend application.
   public/stylesheets/main.css - compiled css for the webpage.
 
   routes/index.js - contains the Express routing configurations.
+
+  public/javascripts/index.js - contains code to connect to MQTT, update the
+  graph data and send notifications to the user.
+
+  public/javascripts/linegraph.js - contains configurations to create a new
+  Chart.js line graph and update the data displayed.
+
+  public/javascripts/mqtt.min.js - minified version of the MQTT.js library.
 
   views/*.hbs - contains all HTML/Handlebars templates.
 

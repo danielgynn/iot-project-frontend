@@ -1,3 +1,4 @@
+// Use express and passport libraries.
 var express = require('express');
 var passport = require('passport');
 var router = express.Router();
@@ -14,11 +15,12 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* GET users listing. */
+// GET users listing.
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+// GET login route.
 router.get('/login', function(req, res, next) {
   res.render('login', {
     heading: 'Login',
@@ -26,6 +28,7 @@ router.get('/login', function(req, res, next) {
   });
 });
 
+// GET signup route.
 router.get('/signup', function(req, res) {
   res.render('signup', {
     heading: 'Signup',
@@ -33,7 +36,7 @@ router.get('/signup', function(req, res) {
   });
 });
 
-// GET visuals data
+// GET visuals data.
 router.get('/visuals', isLoggedIn, function(req, res) {
   res.render('visuals', {
     title: 'IoT Visualisations',
@@ -44,17 +47,19 @@ router.get('/visuals', isLoggedIn, function(req, res) {
   });
 });
 
-// Unauthenticate user
+// Unauthenticate user.
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
 
+// POST signup authentication request.
 router.post('/signup', passport.authenticate('local-signup', {
   successRedirect: '/',
   failureRedirect: '/signup'
 }));
 
+// POST login authentication request.
 router.post('/login', passport.authenticate('local-login', {
   successRedirect: '/',
   failureRedirect: '/login'
@@ -62,6 +67,7 @@ router.post('/login', passport.authenticate('local-login', {
 
 module.exports = router;
 
+// Check if user is authenticated.
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
