@@ -5,7 +5,11 @@
         {{heading}}
       </h1>
       <h2 class="subtitle">
-        The visualisations are displayed <a href="/visuals">here</a>.
+        {{#if user}}
+          The visualisations are displayed <a href="/visuals">here</a>.
+        {{else}}
+          <p>No user is currently authenticated, <a href="/login">Login</a> or <a href="/signup">Signup</a>.</p>
+        {{/if}}
       </h2>
     </div>
   </div>
@@ -13,13 +17,10 @@
 
 <section class="section">
   <div class="container">
-    <p>MQTT Websockets is hosted at <strong>{{ws}}</strong>.</p>
-    <p>Host: <strong>{{host}}</strong>.</p>
-
     {{#if user}}
+      <p>MQTT Websockets is hosted at <strong>{{ws}}</strong>.</p>
+      <p>Host: <strong>{{host}}</strong>.</p>
       <p>Current user: <strong>{{user.local.email}}</strong></p>
-    {{else}}
-      <p>No user is currently authenticated, <a href="/login">Login</a> or <a href="/signup">Signup</a>.</p>
     {{/if}}
   </div>
 </section>
